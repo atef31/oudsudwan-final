@@ -1,8 +1,14 @@
 {
+    "theme_id": 1018760024,
     "name": {
-        "ar": "رائد",
-        "en": "Theme Raed"
+        "ar": "سدوان للعود",
+        "en": "OUDSUDWAN"
     },
+    "description": {
+        "ar": "متجر العود الفيتنامي الفاخر",
+        "en": "Luxury Vietnamese Oud Store"
+    },
+    "author": "OUDSUDWAN",
     "repository": "https://github.com/SallaApp/theme-raed",
     "author_email": "support@salla.sa",
     "features": [

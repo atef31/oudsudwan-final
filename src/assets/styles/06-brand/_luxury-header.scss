@@ -1,0 +1,209 @@
+@import './variables';
+
+// ─── Luxury Header Wrapper ────────────────────────────────────────────────────
+.luxury-header {
+  position: relative;
+  z-index: var(--z-header);
+}
+
+// ─── Top Navbar ───────────────────────────────────────────────────────────────
+// Slim, ivory-tinted bar. Stays subtle so the main nav leads visually.
+.top-navbar {
+  background-color: var(--brand-ivory) !important;
+  border-bottom: 1px solid rgba($brand-gold, 0.15);
+  min-height: 40px !important;
+
+  .topnav-is-dark & {
+    background-color: var(--brand-brown) !important;
+  }
+
+  // Tighten search in top bar
+  .s-search-input {
+    background-color: rgba($brand-gold, 0.06) !important;
+    border: 1px solid rgba($brand-gold, 0.2) !important;
+    border-radius: 999px !important;
+
+    &:hover,
+    &:focus-within {
+      background-color: rgba($brand-gold, 0.1) !important;
+    }
+  }
+}
+
+.topnav-link-item {
+  font-size: 0.8rem;
+  color: var(--brand-brown);
+  opacity: 0.75;
+  transition: opacity var(--transition-base);
+
+  &:hover {
+    opacity: 1;
+  }
+
+  border-color: rgba($brand-gold, 0.2) !important;
+}
+
+// ─── Main Nav Container ────────────────────────────────────────────────────────
+.main-nav-container {
+  background-color: var(--brand-white) !important;
+  border-bottom: 1px solid rgba($brand-gold, 0.18);
+  min-height: 76px !important;
+
+  @media (min-width: 1024px) {
+    min-height: 88px !important;
+  }
+
+  // Gold accent line at very bottom — luxury brand signature
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba($brand-gold, 0.5) 30%,
+      $brand-gold 50%,
+      rgba($brand-gold, 0.5) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+}
+
+// ─── Logo ──────────────────────────────────────────────────────────────────────
+.navbar-brand {
+  img {
+    max-height: 56px !important;
+    max-width: 200px !important;
+    width: auto;
+    transition: max-height var(--transition-base);
+
+    @media (max-width: 640px) {
+      max-height: 44px !important;
+      max-width: 140px !important;
+    }
+  }
+}
+
+// ─── Sticky / Scrolled State ───────────────────────────────────────────────────
+// Theme JS adds .fixed-pinned then .fixed-header on scroll.
+// We upgrade the visual to a frosted-glass luxury bar.
+.main-nav-container.fixed-pinned .inner,
+.main-nav-container.fixed-header .inner {
+  // Solid fallback for all browsers / low-end devices
+  background-color: rgba($brand-white, 0.98) !important;
+  box-shadow: 0 2px 24px rgba($brand-black, 0.07) !important;
+  border-bottom: 1px solid rgba($brand-gold, 0.22);
+
+  // Frosted glass only where supported and only on desktop
+  @supports (-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px)) {
+    @media (min-width: 641px) {
+      background-color: rgba($brand-white, 0.96) !important;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+  }
+}
+
+// Shrink logo when sticky
+.main-nav-container.fixed-header .navbar-brand img {
+  max-height: 44px !important;
+
+  @media (max-width: 640px) {
+    max-height: 36px !important;
+  }
+}
+
+// ─── Navigation Links ──────────────────────────────────────────────────────────
+.main-menu > li > a,
+custom-main-menu a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--brand-brown) !important;
+  letter-spacing: 0.02em;
+  position: relative;
+  transition: color var(--transition-base);
+
+  // Gold underline slide-in on hover
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--brand-gold);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: var(--brand-gold) !important;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &.is-active,
+  &[aria-current="page"] {
+    color: var(--brand-gold) !important;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// ─── Cart & User Icons ─────────────────────────────────────────────────────────
+.header-btn__icon {
+  color: var(--brand-brown) !important;
+  border-color: rgba($brand-gold, 0.25) !important;
+  transition: color var(--transition-base), border-color var(--transition-base), background-color var(--transition-base);
+
+  &:hover {
+    color: var(--brand-gold) !important;
+    border-color: var(--brand-gold) !important;
+    background-color: rgba($brand-gold, 0.06);
+  }
+}
+
+.s-cart-summary-count {
+  background-color: var(--brand-gold) !important;
+  color: var(--brand-white) !important;
+}
+
+.s-cart-summary-total {
+  color: var(--brand-brown) !important;
+  font-weight: 600;
+}
+
+// ─── Hamburger (Mobile) ────────────────────────────────────────────────────────
+.mburger .sicon-menu,
+#mainnav .sicon-menu {
+  color: var(--brand-brown) !important;
+  font-size: 1.5rem;
+}
+
+// ─── Mobile Menu Panel ─────────────────────────────────────────────────────────
+// mmenu-light overrides for luxury feel
+.mm-ocd__content {
+  background-color: var(--brand-white) !important;
+}
+
+.mm-listitem__text {
+  color: var(--brand-brown) !important;
+  font-family: $font-arabic;
+  font-weight: 500;
+  border-bottom-color: rgba($brand-gold, 0.12) !important;
+
+  &:hover {
+    color: var(--brand-gold) !important;
+    background-color: rgba($brand-gold, 0.04) !important;
+  }
+}

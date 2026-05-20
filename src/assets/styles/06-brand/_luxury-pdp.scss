@@ -1,0 +1,713 @@
+@import './variables';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// LUXURY PDP — OUDSUDWAN Product Detail Page
+// Targets confirmed selectors from single.twig audit.
+// All overrides are additive — zero Salla component internals touched.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Breadcrumb ────────────────────────────────────────────────────────────────
+.breadcrumbs {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid rgba($brand-gold, 0.12);
+  margin-bottom: 0;
+
+  salla-breadcrumb {
+    font-size: 0.8125rem;
+    color: rgba($brand-brown, 0.6);
+
+    a {
+      color: rgba($brand-brown, 0.6);
+      transition: color var(--transition-base);
+
+      &:hover {
+        color: var(--brand-gold);
+      }
+    }
+
+    // Active / current crumb
+    [aria-current="page"] {
+      color: var(--brand-brown);
+      font-weight: 600;
+    }
+  }
+}
+
+// ─── Layout Grid ───────────────────────────────────────────────────────────────
+.pdp-layout {
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: flex-start;
+
+  @media (max-width: 767px) {
+    gap: 0;
+  }
+}
+
+// ─── Gallery Column ────────────────────────────────────────────────────────────
+.pdp__gallery {
+  // Stickier top offset — accounts for header height
+  top: 96px !important;
+
+  @media (max-width: 767px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+// ─── Gallery Slider ────────────────────────────────────────────────────────────
+.details-slider {
+  border-radius: 6px !important;
+  overflow: hidden;
+  background-color: var(--brand-ivory);
+  border: 1px solid rgba($brand-gold, 0.1);
+
+  // Main image swiper slides
+  .swiper-slide.magnify-wrapper,
+  .swiper-slide.homeslider__slide {
+    background-color: var(--brand-ivory);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      transition: transform var(--transition-slow);
+    }
+
+    &:hover img {
+      transform: scale3d(1.04, 1.04, 1);
+    }
+  }
+}
+
+// ─── Gallery Thumbnails ────────────────────────────────────────────────────────
+// .slide--one-fourth is the real selector from single.twig
+.slide--one-fourth {
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-color: var(--brand-ivory);
+  transition: border-color var(--transition-base), opacity var(--transition-base);
+  aspect-ratio: 1 / 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  &:hover {
+    border-color: rgba($brand-gold, 0.4);
+    opacity: 0.9;
+
+    img {
+      transform: scale3d(1.04, 1.04, 1);
+    }
+  }
+
+  // Active thumbnail — gold border (Salla adds swiper-slide-thumb-active)
+  &.swiper-slide-thumb-active {
+    border-color: var(--brand-gold) !important;
+    opacity: 1;
+  }
+}
+
+// ─── Promotion Badge ───────────────────────────────────────────────────────────
+.promotion-title {
+  position: absolute;
+  top: 1rem;
+  z-index: 3;
+  background-color: var(--brand-gold) !important;
+  color: var(--brand-white) !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 1rem;
+  border-radius: 0 2px 2px 0;
+  text-transform: uppercase;
+
+  html[dir="rtl"] & {
+    right: 0;
+    border-radius: 2px 0 0 2px;
+  }
+
+  html[dir="ltr"] & {
+    left: 0;
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+// ─── Wishlist Button (Gallery) ─────────────────────────────────────────────────
+.details-slider .btn--wishlist,
+.pdp__gallery .btn--wishlist {
+  position: absolute;
+  z-index: 3;
+  top: 1rem;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+
+  html[dir="rtl"] & {
+    left: 1rem;
+    right: auto;
+  }
+
+  html[dir="ltr"] & {
+    right: 1rem;
+    left: auto;
+  }
+
+  &:hover {
+    transform: scale3d(1.12, 1.12, 1);
+    opacity: 0.9;
+  }
+
+  i {
+    color: var(--brand-brown) !important;
+    font-size: 1.1rem;
+  }
+
+  // Heart filled when in wishlist
+  &[data-in-wishlist="true"] i,
+  &.is-in-wishlist i {
+    color: var(--brand-gold) !important;
+  }
+}
+
+// ─── Info Panel ────────────────────────────────────────────────────────────────
+.pdp__info {
+  top: 96px !important;
+
+  @media (max-width: 767px) {
+    top: auto !important;
+    overflow: visible !important;
+  }
+}
+
+// ─── Brand Logo ────────────────────────────────────────────────────────────────
+.product-brand {
+  margin-bottom: 1.25rem !important;
+
+  .brand-logo img {
+    max-height: 2.5rem;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity var(--transition-base);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// ─── Product Title ─────────────────────────────────────────────────────────────
+.pdp__title {
+  font-size: clamp(1.25rem, 3vw, 1.75rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: var(--brand-brown) !important;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem !important;
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+}
+
+// ─── Product Subtitle ──────────────────────────────────────────────────────────
+.product-entry__sub-title {
+  font-size: 0.9375rem !important;
+  color: rgba($brand-brown, 0.6) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+// ─── Rating Stars ──────────────────────────────────────────────────────────────
+salla-rating-stars {
+  margin-bottom: 1rem;
+  display: block;
+
+  --salla-rating-star-color: #{$brand-gold};
+  --salla-rating-star-empty-color: #{rgba($brand-gold, 0.25)};
+}
+
+.s-rating-stars-reviews {
+  color: rgba($brand-brown, 0.55) !important;
+  font-size: 0.8rem !important;
+}
+
+// ─── Hero Price (above the form) ───────────────────────────────────────────────
+.pdp__price-hero {
+  margin: 1rem 0 1.25rem;
+  align-items: baseline !important;
+
+  .text-red-800,
+  p.font-bold {
+    font-size: clamp(1.25rem, 3vw, 1.6rem) !important;
+    font-weight: 700 !important;
+    color: var(--brand-gold) !important;
+  }
+
+  .text-gray-500.line-through {
+    font-size: 1rem;
+    color: rgba($brand-brown, 0.4) !important;
+  }
+}
+
+// ─── Product Description ───────────────────────────────────────────────────────
+.product__description {
+  padding: 0 !important;
+  margin-bottom: 1.25rem !important;
+
+  .article--main {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: rgba($brand-brown, 0.72);
+  }
+
+  // Read more toggle
+  #btn-show-more {
+    color: var(--brand-gold) !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: border-color var(--transition-base);
+
+    &:hover {
+      border-bottom-color: var(--brand-gold);
+    }
+  }
+}
+
+// ─── Tags ──────────────────────────────────────────────────────────────────────
+.pdp__info a.inline-flex.text-gray-500 {
+  display: inline-flex !important;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--brand-ivory);
+  border: 1px solid rgba($brand-gold, 0.2);
+  border-radius: 999px;
+  color: rgba($brand-brown, 0.7) !important;
+  text-decoration: none !important;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+  margin-bottom: 0.25rem;
+
+  &:hover {
+    background: rgba($brand-gold, 0.08);
+    border-color: var(--brand-gold);
+    color: var(--brand-gold) !important;
+  }
+}
+
+// ─── Social Share + Wishlist row ───────────────────────────────────────────────
+.pdp__info .flex.rtl\:space-x-reverse.space-x-3 {
+  margin-bottom: 1.25rem;
+  align-items: center;
+}
+
+// ─── Sold / Remained Quantity Badges ──────────────────────────────────────────
+.pdp__info .bg-white.py-2\.5.mb-5 {
+  background-color: var(--brand-ivory) !important;
+  border: 1px solid rgba($brand-gold, 0.15) !important;
+  border-radius: 4px !important;
+
+  .text-red-800 {
+    color: #c0392b !important;
+  }
+}
+
+// ─── SKU Section ───────────────────────────────────────────────────────────────
+.pdp__info .mb-4.flex.justify-between {
+  background-color: var(--brand-ivory) !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba($brand-gold, 0.1);
+  font-size: 0.875rem;
+  color: rgba($brand-brown, 0.7);
+
+  i {
+    color: var(--brand-gold);
+  }
+}
+
+// ─── White Card Sections in Form ──────────────────────────────────────────────
+// All section.bg-white.p-5 blocks in the product form
+.product-form section {
+  background-color: var(--brand-white) !important;
+  border-radius: 4px !important;
+  margin-bottom: 1px; // tight stack — no gaps between form rows
+  border: 1px solid rgba($brand-gold, 0.08);
+
+  &:first-of-type {
+    border-radius: 4px 4px 0 0 !important;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 4px 4px !important;
+  }
+}
+
+// ─── Form Labels ───────────────────────────────────────────────────────────────
+.product-form .form-label {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--brand-brown) !important;
+}
+
+// ─── Price Bar (inside form, above sticky CTA) ────────────────────────────────
+.product-form section.flex {
+  padding: 1.25rem 1.5rem !important;
+
+  .total-price {
+    font-size: clamp(1.25rem, 3vw, 1.5rem) !important;
+    font-weight: 700 !important;
+    color: var(--brand-gold) !important;
+  }
+
+  .price_is_on_sale .total-price {
+    color: #c0392b !important;
+  }
+
+  .before-price {
+    font-size: 0.9375rem;
+    color: rgba($brand-brown, 0.4) !important;
+  }
+
+  .out-of-stock {
+    color: #c0392b !important;
+  }
+}
+
+// ─── STEP 12.4 — Sticky CTA Bar (Mobile + Desktop) ───────────────────────────
+.sticky-product-bar {
+  background-color: var(--brand-white) !important;
+  padding: 1.25rem 1.5rem !important;
+  border-top: 1px solid rgba($brand-gold, 0.15) !important;
+  border-radius: 0 0 4px 4px !important;
+
+  // Quantity row
+  &__quantity {
+    margin-bottom: 1.25rem !important;
+    align-items: center;
+
+    .form-label {
+      font-weight: 600;
+      color: var(--brand-brown);
+    }
+
+    salla-quantity-input {
+      --salla-quantity-input-btn-color: #{$brand-gold};
+      --salla-quantity-input-border-color: #{rgba($brand-gold, 0.3)};
+      --salla-quantity-input-btn-bg: #{rgba($brand-gold, 0.05)};
+      --salla-quantity-input-btn-bg-hover: #{rgba($brand-gold, 0.12)};
+    }
+  }
+
+  // Add to cart CTA
+  &__btn,
+  salla-add-product-button {
+    --salla-button-color: #{$brand-white};
+    --salla-button-bg: #{$brand-gold};
+    --salla-button-border: #{$brand-gold};
+    --salla-button-color-hover: #{$brand-white};
+    --salla-button-bg-hover: #{$brand-gold-dark};
+    --salla-button-border-hover: #{$brand-gold-dark};
+    --salla-button-radius: 2px;
+
+    width: 100% !important;
+    margin-top: 0 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem !important;
+    transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base) !important;
+
+    &:hover:not([disabled]) {
+      box-shadow: 0 6px 20px rgba($brand-gold, 0.35) !important;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ─── Mobile Sticky Bottom Bar ──────────────────────────────────────────────────
+// The theme JS shows/hides this based on scroll + sticky_add_to_cart setting.
+// We enhance the visual, not the behaviour.
+@media (max-width: 640px) {
+  .is-sticky-product-bar .sticky-product-bar {
+    background-color: var(--brand-white) !important;
+    border-top: 1px solid rgba($brand-gold, 0.2) !important;
+    // Safe area for iPhone notch
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+    // Entrance animation — slide up from below
+    will-change: transform, opacity;
+
+    salla-add-product-button,
+    .sticky-product-bar__btn {
+      border-radius: 2px !important;
+    }
+
+    .sticky-product-bar__quantity salla-quantity-input {
+      .s-quantity-input-container {
+        border-color: rgba($brand-gold, 0.3) !important;
+        border-radius: 2px !important;
+      }
+
+      .s-quantity-input-button {
+        color: var(--brand-gold) !important;
+
+        &:hover {
+          background-color: rgba($brand-gold, 0.08) !important;
+        }
+      }
+
+      .s-quantity-input-input {
+        color: var(--brand-brown) !important;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ─── STEP 12.5 — Product Options ──────────────────────────────────────────────
+salla-product-options {
+  // Option labels
+  --salla-product-options-label-color: #{$brand-brown};
+  --salla-product-options-label-font-weight: 600;
+
+  // Color swatches
+  --salla-product-options-color-border-color: #{rgba($brand-gold, 0.3)};
+  --salla-product-options-color-selected-border: #{$brand-gold};
+
+  // Dropdown selects
+  .s-form-control {
+    border-color: rgba($brand-gold, 0.25) !important;
+    border-radius: 2px !important;
+    color: var(--brand-brown) !important;
+    background-color: var(--brand-white) !important;
+
+    &:focus {
+      border-color: var(--brand-gold) !important;
+      box-shadow: 0 0 0 2px rgba($brand-gold, 0.12) !important;
+      outline: none;
+    }
+  }
+
+  // Thumbnail/image options
+  .s-product-options-thumbnail-item {
+    border-color: rgba($brand-gold, 0.2) !important;
+    border-radius: 2px !important;
+    transition: border-color var(--transition-base) !important;
+
+    &.is-selected,
+    &[aria-pressed="true"] {
+      border-color: var(--brand-gold) !important;
+    }
+  }
+
+  // Radio text options
+  .s-product-options-single-option-item {
+    border-color: rgba($brand-gold, 0.2) !important;
+    border-radius: 2px !important;
+    color: var(--brand-brown) !important;
+    transition: border-color var(--transition-base), background var(--transition-base) !important;
+
+    &.is-selected,
+    &[aria-pressed="true"] {
+      border-color: var(--brand-gold) !important;
+      background-color: rgba($brand-gold, 0.06) !important;
+      color: var(--brand-gold) !important;
+    }
+  }
+}
+
+// ─── Weight / Size Guide Section ───────────────────────────────────────────────
+.product-form section.bg-white.rounded-md.mb-5,
+.pdp__info section.bg-white.p-5.rounded-md.mb-5 {
+  background-color: var(--brand-ivory) !important;
+  border: 1px solid rgba($brand-gold, 0.12) !important;
+  border-radius: 4px !important;
+
+  .form-label {
+    color: var(--brand-brown) !important;
+
+    i {
+      color: var(--brand-gold) !important;
+    }
+  }
+
+  .product-weight {
+    color: rgba($brand-brown, 0.7);
+  }
+
+  salla-button[shape="link"] {
+    color: var(--brand-gold) !important;
+    font-weight: 600;
+  }
+}
+
+// ─── Availability Section ──────────────────────────────────────────────────────
+.pdp__info section.bg-white.p-5.rounded-md.mb-5.last\:mb-0 {
+  background-color: var(--brand-ivory) !important;
+  border: 1px solid rgba($brand-gold, 0.1) !important;
+
+  .text-primary {
+    color: var(--brand-gold) !important;
+  }
+}
+
+// ─── Note / File Upload Section ────────────────────────────────────────────────
+.btn-tab.btn--collapse {
+  background-color: var(--brand-ivory) !important;
+  border: 1px solid rgba($brand-gold, 0.2) !important;
+  border-radius: 2px !important;
+  color: var(--brand-brown) !important;
+  font-size: 0.875rem;
+  transition: background var(--transition-base), border-color var(--transition-base);
+
+  &:hover {
+    background-color: rgba($brand-gold, 0.08) !important;
+    border-color: var(--brand-gold) !important;
+    color: var(--brand-gold) !important;
+  }
+}
+
+textarea.form-input {
+  border-color: rgba($brand-gold, 0.2) !important;
+  border-radius: 2px !important;
+  background-color: var(--brand-ivory) !important;
+  color: var(--brand-brown) !important;
+
+  &:focus {
+    border-color: var(--brand-gold) !important;
+    box-shadow: 0 0 0 2px rgba($brand-gold, 0.1) !important;
+  }
+}
+
+// ─── Installment / Metadata ────────────────────────────────────────────────────
+salla-installment,
+salla-metadata {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+// ─── Quick Order ───────────────────────────────────────────────────────────────
+salla-quick-order {
+  display: block;
+  margin-top: 1.25rem;
+}
+
+// ─── STEP 12.6 — Comments Section ─────────────────────────────────────────────
+.s-comments-product {
+  background-color: var(--brand-ivory) !important;
+  margin-top: var(--section-gap) !important;
+  padding-top: clamp(2.5rem, 5vw, 4rem) !important;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem) !important;
+  border-top: 1px solid rgba($brand-gold, 0.15);
+  border-bottom: 1px solid rgba($brand-gold, 0.15);
+}
+
+// ─── STEP 12.6 — Related Products ──────────────────────────────────────────────
+.pdp__related {
+  margin-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+
+  // Salla web component heading
+  salla-products-slider {
+    --s-slider-block-title-font-size: clamp(1.2rem, 3vw, 1.6rem);
+    --s-slider-block-title-color: #{$brand-brown};
+    --s-slider-block-title-font-weight: 700;
+
+    display: block;
+  }
+
+  // Slider arrows in related products
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: var(--brand-gold) !important;
+    background: rgba($brand-gold, 0.06);
+    border: 1px solid rgba($brand-gold, 0.25);
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border-radius: 50%;
+    transition: background var(--transition-base), border-color var(--transition-base);
+
+    &::after {
+      font-size: 0.8rem !important;
+      font-weight: 700;
+    }
+
+    &:hover {
+      background: rgba($brand-gold, 0.12);
+      border-color: var(--brand-gold);
+    }
+  }
+
+  // Related product cards inherit homepage card styles via .product-entry
+  // Gold hover already applied in _luxury-cards.scss
+}
+
+// ─── Gifting Widget ────────────────────────────────────────────────────────────
+salla-gifting {
+  display: block;
+  margin-top: 1rem;
+  border: 1px solid rgba($brand-gold, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+// ─── Pre-order Countdown ───────────────────────────────────────────────────────
+salla-count-down {
+  --salla-count-down-color: #{$brand-gold};
+  --salla-count-down-border-color: #{rgba($brand-gold, 0.2)};
+  --salla-count-down-bg: #{rgba($brand-gold, 0.06)};
+}
+
+// ─── Lightbox (fslightbox) override ───────────────────────────────────────────
+.fslightbox-container {
+  background: rgba($brand-black, 0.95) !important;
+}
+
+.fslightbox-toolbar {
+  background: rgba($brand-black, 0.6) !important;
+}
+
+// ─── 3D model viewer ──────────────────────────────────────────────────────────
+.model-viewer-wrapper {
+  background: var(--brand-ivory);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba($brand-gold, 0.1);
+}
+
+// ─── Share buttons list ────────────────────────────────────────────────────────
+.share-btns-list {
+  background-color: var(--brand-white) !important;
+  border: 1px solid rgba($brand-gold, 0.15) !important;
+
+  a {
+    color: var(--brand-brown) !important;
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--brand-gold) !important;
+    }
+  }
+}
+
+// ─── Tax label ─────────────────────────────────────────────────────────────────
+.color-grey,
+small.color-grey {
+  color: rgba($brand-brown, 0.5) !important;
+  font-size: 0.8rem !important;
+  display: block;
+  margin-bottom: 0.5rem;
+}

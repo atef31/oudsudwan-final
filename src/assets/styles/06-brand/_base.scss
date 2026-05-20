@@ -1,0 +1,78 @@
+@import './variables';
+
+// Override default gray body background to luxury white
+body {
+  background-color: var(--brand-white) !important;
+}
+
+// Ivory sections — applied to alternate homepage blocks
+.section-ivory {
+  background-color: var(--brand-ivory);
+}
+
+// White section base
+.section-white {
+  background-color: var(--brand-white);
+}
+
+// Luxury container max-width refinement
+// theme-raed uses .container — we widen it slightly for editorial feel
+.container {
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+    padding-left: clamp(1rem, 3vw, 3rem);
+    padding-right: clamp(1rem, 3vw, 3rem);
+  }
+}
+
+// Section vertical rhythm — replaces fixed mt-8/mt-16
+.s-block {
+  margin-top: var(--section-gap);
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+// Gold divider utility
+.divider-gold {
+  width: 3rem;
+  height: 2px;
+  background: var(--brand-gold);
+  display: block;
+}
+
+// Subtle hover state for interactive elements
+.luxury-hover {
+  transition: opacity var(--transition-base), transform var(--transition-base);
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+  }
+}
+
+// Remove blue tap highlight on mobile (luxury feel)
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Smooth image rendering — standard property, all browsers
+img {
+  image-rendering: auto;
+}
+
+// Scrollbar — minimal luxury style (Webkit only)
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($brand-gold, 0.4);
+  border-radius: 2px;
+}

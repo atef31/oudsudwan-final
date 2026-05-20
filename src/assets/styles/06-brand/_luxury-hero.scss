@@ -1,0 +1,176 @@
+@import './variables';
+
+// ─── Hero Wrapper ──────────────────────────────────────────────────────────────
+.luxury-hero {
+  margin-top: 0 !important;
+  overflow: hidden;
+}
+
+// ─── Slide ─────────────────────────────────────────────────────────────────────
+.luxury-hero__slide {
+  height: clamp(420px, 72vh, 800px) !important;
+  background-color: var(--brand-ivory);
+
+  @media (max-width: 640px) {
+    height: clamp(320px, 65vw, 520px) !important;
+  }
+}
+
+// ─── Background Image ──────────────────────────────────────────────────────────
+.luxury-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  will-change: transform;
+
+  // Subtle Ken Burns drift on active slide
+  .swiper-slide-active & {
+    animation: hero-drift 12s ease-out forwards;
+  }
+}
+
+@keyframes hero-drift {
+  from { transform: scale3d(1, 1, 1); }
+  to   { transform: scale3d(1.04, 1.04, 1); }
+}
+
+// ─── Gradient Overlay ──────────────────────────────────────────────────────────
+.luxury-hero__bg--overlay {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($brand-black, 0.62) 0%,
+      rgba($brand-brown, 0.35) 60%,
+      transparent 100%
+    );
+  }
+}
+
+// ─── Content Container ─────────────────────────────────────────────────────────
+.luxury-hero__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+  z-index: 2;
+
+  // Centered layout on mobile, start-aligned on desktop
+  @media (max-width: 640px) {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+// ─── Text Block ────────────────────────────────────────────────────────────────
+.luxury-hero__text {
+  max-width: 560px;
+
+  @media (max-width: 640px) {
+    max-width: 90%;
+  }
+}
+
+// ─── Headline ──────────────────────────────────────────────────────────────────
+.luxury-hero__title {
+  font-size: var(--font-hero) !important;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--brand-white) !important;
+  text-shadow: 0 2px 24px rgba($brand-black, 0.4);
+  margin-bottom: 1rem;
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+}
+
+// ─── Description ───────────────────────────────────────────────────────────────
+.luxury-hero__desc {
+  font-size: clamp(0.9rem, 2vw, 1.05rem) !important;
+  color: rgba($brand-white, 0.85) !important;
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 8px rgba($brand-black, 0.3);
+
+  @media (max-width: 640px) {
+    max-width: 100%;
+  }
+}
+
+// ─── Gold Divider ──────────────────────────────────────────────────────────────
+.luxury-hero__divider {
+  display: block;
+  width: 3rem;
+  height: 2px;
+  background: var(--brand-gold);
+  border-radius: 1px;
+  opacity: 0.9;
+
+  @media (max-width: 640px) {
+    margin: 0 auto;
+  }
+}
+
+// ─── Salla Slider Controls ─────────────────────────────────────────────────────
+// Override the default Salla salla-slider arrow styles
+.luxury-hero .swiper-button-next,
+.luxury-hero .swiper-button-prev {
+  color: var(--brand-white) !important;
+  background: rgba($brand-gold, 0.2);
+  border: 1px solid rgba($brand-gold, 0.45);
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  border-radius: 50%;
+  transition: background var(--transition-base), border-color var(--transition-base);
+
+  &::after {
+    font-size: 0.85rem !important;
+    font-weight: 700;
+  }
+
+  &:hover {
+    background: rgba($brand-gold, 0.45);
+    border-color: var(--brand-gold);
+  }
+}
+
+// ─── Pagination Dots ───────────────────────────────────────────────────────────
+.luxury-hero .swiper-pagination-bullet {
+  background: rgba($brand-white, 0.45) !important;
+  opacity: 1 !important;
+  width: 6px !important;
+  height: 6px !important;
+  transition: transform 0.3s ease, background 0.3s ease;
+
+  &-active {
+    background: var(--brand-gold) !important;
+    transform: scale(1.6);
+  }
+}
+
+// ─── Fallback for standard hero slider (non-enhanced) ─────────────────────────
+.s-block--hero-slider:not(.luxury-hero) {
+  .swiper-slide {
+    height: clamp(380px, 65vh, 720px) !important;
+  }
+
+  .overlay-bg::after,
+  .swiper-lazy::after {
+    background: linear-gradient(
+      to top,
+      rgba($brand-black, 0.65) 0%,
+      rgba($brand-black, 0.2) 55%,
+      transparent 100%
+    ) !important;
+  }
+}

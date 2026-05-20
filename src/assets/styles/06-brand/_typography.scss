@@ -1,0 +1,115 @@
+@import './variables';
+
+// RTL (Arabic) — Tajawal as primary font
+html[dir="rtl"] body {
+  font-family: $font-arabic;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--brand-brown);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// LTR (English) — Cormorant Garamond for body
+html[dir="ltr"] body {
+  font-family: $font-english;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--brand-brown);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Display headings — editorial serif in both directions
+.brand-heading,
+h1.brand-heading,
+h2.brand-heading,
+h3.brand-heading {
+  html[dir="rtl"] & {
+    font-family: $font-arabic;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  line-height: 1.2;
+  color: var(--brand-brown);
+}
+
+// Section titles used across homepage blocks
+.s-block__title h2 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--brand-brown);
+  position: relative;
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-weight: 500;
+  }
+
+  // Gold underline accent
+  &::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--brand-gold);
+    margin-top: 0.5rem;
+
+    html[dir="rtl"] & {
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    html[dir="ltr"] & {
+      margin-left: 0;
+    }
+  }
+}
+
+// Price text — keep Arabic numerals readable
+.s-price,
+.s-product-card-price {
+  font-family: $font-arabic;
+  font-weight: 600;
+}
+
+// Nav links
+.main-menu a,
+custom-main-menu a {
+  html[dir="rtl"] & {
+    font-family: $font-arabic;
+    font-weight: 500;
+  }
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+// Gold text utility
+.text-brand-gold {
+  color: var(--brand-gold);
+}
+
+// Serif display utility (for hero headlines)
+.font-display {
+  html[dir="rtl"] & {
+    font-family: $font-arabic;
+    font-weight: 700;
+  }
+
+  html[dir="ltr"] & {
+    font-family: $font-english;
+    font-weight: 400;
+  }
+}

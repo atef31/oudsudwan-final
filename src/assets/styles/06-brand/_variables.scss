@@ -1,0 +1,21 @@
+// Brand SCSS Variables
+// These mirror the CSS custom props in global.scss for use inside SCSS logic,
+// calc(), or anywhere CSS vars can't be used directly.
+
+$brand-gold:        #C9A24A;
+$brand-gold-light:  #ddbf7a;
+$brand-gold-dark:   #b08838;
+$brand-black:       #000000;
+$brand-ivory:       #F5F1E8;
+$brand-ivory-dark:  #EDE8DB;
+$brand-brown:       #3A2E25;
+$brand-white:       #ffffff;
+
+$font-arabic:       'Tajawal', 'DINNextLTArabic', sans-serif;
+$font-english:      'Cormorant Garamond', Georgia, serif;
+
+$transition-base:   0.3s ease;
+$transition-slow:   0.6s ease;
+
+$border-gold:       1px solid rgba($brand-gold, 0.3);
+$border-gold-solid: 1px solid $brand-gold;

@@ -1,0 +1,16 @@
+// OUDSUDWAN Brand Layer
+// Import order matters: variables first, then base resets, then components
+
+@import './variables';
+@import './base';
+@import './typography';
+@import './luxury-header';
+@import './luxury-hero';
+@import './luxury-cards';
+@import './luxury-sections';
+@import './luxury-brand-story';
+@import './luxury-wide-banner';
+@import './luxury-pdp';
+@import './luxury-plp';
+@import './luxury-footer';
+@import './luxury-mobile';

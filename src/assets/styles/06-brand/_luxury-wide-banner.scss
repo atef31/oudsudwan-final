@@ -1,0 +1,107 @@
+@import './variables';
+
+// ─── Luxury Wide Banner (parallax-background block) ───────────────────────────
+.luxury-wide-banner {
+  margin-top: var(--section-gap) !important;
+
+  &__inner {
+    position: relative;
+    height: clamp(280px, 45vw, 560px);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; // Parallax effect on desktop
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    // Disable fixed attachment on mobile — causes performance issues on iOS
+    @media (max-width: 768px) {
+      background-attachment: scroll;
+      height: clamp(220px, 55vw, 380px);
+    }
+  }
+
+  // Gradient overlay — more refined than flat black
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($brand-brown, 0.78) 0%,
+      rgba($brand-black, 0.45) 60%,
+      rgba($brand-black, 0.25) 100%
+    );
+  }
+
+  // Gold geometric accent lines (pure CSS, no extra markup)
+  &__inner::before,
+  &__inner::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba($brand-gold, 0.25);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__inner::before {
+    inset: 1.5rem;
+    border-radius: 2px;
+  }
+
+  &__inner::after {
+    inset: 2.25rem;
+    border-radius: 2px;
+    border-color: rgba($brand-gold, 0.12);
+  }
+
+  // Content
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  // Headline
+  &__title {
+    font-size: clamp(1.75rem, 5vw, 3rem) !important;
+    font-weight: 700;
+    color: var(--brand-white) !important;
+    text-shadow: 0 2px 20px rgba($brand-black, 0.5);
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.01em;
+
+    html[dir="rtl"] & {
+      font-family: $font-arabic;
+    }
+
+    html[dir="ltr"] & {
+      font-family: $font-english;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  // CTA button — gold outlined, fills on hover
+  &__cta {
+    display: inline-block;
+    color: var(--brand-white) !important;
+    border: 1px solid rgba($brand-gold, 0.7);
+    background: rgba($brand-gold, 0.12);
+    padding: 0.8rem 2.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+
+    &:hover {
+      background: var(--brand-gold);
+      border-color: var(--brand-gold);
+      transform: translateY(-2px);
+    }
+  }
+}

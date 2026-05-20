@@ -1,4 +1,10 @@
 {
+  "css.validate": true,
+  "scss.validate": true,
+  "css.lint.vendorPrefix": "ignore",
+  "scss.lint.vendorPrefix": "ignore",
+  "css.lint.unknownProperties": "ignore",
+  "scss.lint.unknownProperties": "ignore",
   "workbench.colorCustomizations": {
     "terminal.background": "#131212",
     "terminal.foreground": "#dddad6",

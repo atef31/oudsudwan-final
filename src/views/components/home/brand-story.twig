@@ -1,0 +1,44 @@
+{#
+| Variable               | Type    | Description                             |
+|------------------------|---------|-----------------------------------------|
+| component.title        | string  | Section headline                        |
+| component.subtitle     | string  | Supporting text                         |
+| component.image        | string  | Brand image URL (optional)              |
+| component.cta_text     | string  | Call to action label                    |
+| component.cta_url      | string  | Call to action link                     |
+| position               | int     | Sorting number                          |
+#}
+<section class="s-block brand-story container">
+  <div class="brand-story__inner">
+
+    {% if component.image %}
+    <div class="brand-story__image-wrap">
+      <img src="{{ component.image }}"
+           alt="{{ component.title }}"
+           loading="lazy"
+           class="brand-story__image">
+    </div>
+    {% endif %}
+
+    <div class="brand-story__content">
+      <span class="brand-story__label" aria-hidden="true">——</span>
+
+      {% if component.title %}
+        <h2 class="brand-story__title font-display">{{ component.title }}</h2>
+      {% endif %}
+
+      {% if component.subtitle %}
+        <p class="brand-story__text">{{ component.subtitle }}</p>
+      {% endif %}
+
+      {% if component.cta_url and component.cta_text %}
+        <a href="{{ component.cta_url }}"
+           class="brand-story__cta">
+          {{ component.cta_text }}
+          <i class="sicon-arrow-{{ theme.is_rtl ? 'left' : 'right' }} rtl:rotate-180 inline-block"></i>
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>

@@ -9,21 +9,62 @@ $main-text-color: var(--main-text-color);
   --main-text-color: #231f1e;
   --main-text-color-dark: #2b2d34;
 
-  /* current */
+  /* brand palette */
   --color-primary: #C9A24A;
   --color-secondary: #000000;
-  --color-primary: #C9A24A;
-  --color-primary-d: #272628;
-  --color-primary-l: #676668;
-  --color-primary-reverse: #ff6767;
-  --color-text: #7c8082;
+  --color-primary-d: #b08838;
+  --color-primary-l: #ddbf7a;
+  --color-primary-reverse: #ffffff;
+  --color-text: #3A2E25;
   --bg-gray: #c6c7ce1a;
-  --color-grey: #f5f7f9;
+  --color-grey: #F5F1E8;
   --color-light-grey: #eeeeee;
-  /* font-size */
-  --font-sm: 0.8685714286rem;
-  /* font-family: ; */
-  --font-main: "DINNextLTArabic";
+
+  /* brand tokens */
+  --brand-gold: #C9A24A;
+  --brand-gold-light: #ddbf7a;
+  --brand-gold-dark: #b08838;
+  --brand-black: #000000;
+  --brand-ivory: #F5F1E8;
+  --brand-ivory-dark: #EDE8DB;
+  --brand-brown: #3A2E25;
+  --brand-white: #ffffff;
+
+  /* brand spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 8rem;
+
+  /* brand section spacing */
+  --section-gap: clamp(3rem, 6vw, 6rem);
+  --container-gap: clamp(1rem, 4vw, 2rem);
+
+  /* brand typography */
+  --font-arabic: 'Tajawal', 'DINNextLTArabic', sans-serif;
+  --font-english: 'Cormorant Garamond', Georgia, serif;
+  --font-main: 'Tajawal', 'DINNextLTArabic', sans-serif;
+
+  /* font sizes */
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-md: 1.125rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 2rem;
+  --font-3xl: 2.5rem;
+  --font-hero: clamp(2rem, 5vw, 3.5rem);
+
+  /* brand z-index scale */
+  --z-whatsapp: 50;
+  --z-header: 30;
+  --z-modal: 100;
+
+  /* brand transitions */
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s ease;
 
   /* plugins */
   --mm-ocd-width: calc(100% - 51px);

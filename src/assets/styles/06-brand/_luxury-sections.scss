@@ -1,0 +1,192 @@
+@import './variables';
+
+// ─── Homepage Editorial Spacing ────────────────────────────────────────────────
+// All .s-block components get luxury vertical breathing room
+.s-block {
+  margin-top: var(--section-gap) !important;
+
+  // First block (hero) always flush — no top margin
+  &:first-of-type {
+    margin-top: 0 !important;
+  }
+
+  // Back-to-back same-type blocks need less gap
+  &--fixed-banner + &--fixed-banner,
+  &--banners + &--banners,
+  &--features + &--features {
+    margin-top: calc(var(--section-gap) * 0.5) !important;
+  }
+}
+
+// ─── Section Title Refinement ──────────────────────────────────────────────────
+.s-block__title {
+  margin-bottom: clamp(1.75rem, 4vw, 3rem) !important;
+  align-items: flex-end !important;
+
+  .right-side {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
+    font-weight: 700 !important;
+    color: var(--brand-brown) !important;
+    line-height: 1.3 !important;
+
+    html[dir="ltr"] & {
+      font-family: $font-english;
+      font-weight: 500;
+    }
+
+    // Gold underline
+    &::after {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--brand-gold);
+      margin-top: 0.6rem;
+      border-radius: 1px;
+    }
+  }
+
+  p {
+    color: rgba($brand-brown, 0.6) !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+// ─── "View All" Link ───────────────────────────────────────────────────────────
+.s-block__display-all {
+  color: var(--brand-gold) !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-base);
+
+  &:hover {
+    border-bottom-color: var(--brand-gold);
+  }
+
+  i {
+    color: var(--brand-gold);
+  }
+}
+
+// ─── Square Banner Block ───────────────────────────────────────────────────────
+.banner-entry {
+  border-radius: 4px !important;
+  overflow: hidden;
+
+  h3, p {
+    text-shadow: 0 1px 8px rgba($brand-black, 0.4);
+  }
+
+  &:hover {
+    h3, p {
+      text-shadow: 0 2px 16px rgba($brand-black, 0.6);
+    }
+  }
+}
+
+// ─── Full-Width Banner Block ───────────────────────────────────────────────────
+.full-banner-entry {
+  height: clamp(260px, 40vw, 520px) !important;
+
+  &::after,
+  &::before {
+    background: var(--brand-gold) !important;
+    opacity: 0.15 !important;
+  }
+}
+
+// ─── Store Features Block ─────────────────────────────────────────────────────
+.s-block--features__item {
+  background-color: var(--brand-white) !important;
+  border: 1px solid rgba($brand-gold, 0.12) !important;
+  border-radius: 4px !important;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base) !important;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 8px 32px rgba($brand-gold, 0.12) !important;
+      border-color: rgba($brand-gold, 0.3) !important;
+    }
+  }
+
+  .feature-icon {
+    background-color: rgba($brand-gold, 0.1) !important;
+    border: 1px solid rgba($brand-gold, 0.2);
+
+    i {
+      color: var(--brand-gold) !important;
+    }
+  }
+
+  h2 {
+    color: var(--brand-brown) !important;
+  }
+}
+
+// ─── Testimonials Block ────────────────────────────────────────────────────────
+.s-testimonial-card,
+.testimonial-entry {
+  background-color: var(--brand-ivory) !important;
+  border: 1px solid rgba($brand-gold, 0.15) !important;
+  border-radius: 4px !important;
+
+  // Star ratings
+  .sicon-star,
+  [class*="star"] {
+    color: var(--brand-gold) !important;
+  }
+}
+
+// ─── Slider with Background Block ──────────────────────────────────────────────
+.s-block--slider-with-bg {
+  background-color: var(--brand-ivory-dark) !important;
+}
+
+// ─── Parallax Background Block ─────────────────────────────────────────────────
+.s-block--parallax-background {
+  &::after {
+    background: linear-gradient(
+      to bottom,
+      rgba($brand-black, 0.5),
+      rgba($brand-brown, 0.7)
+    ) !important;
+  }
+}
+
+// ─── Buttons — Global Luxury Override ─────────────────────────────────────────
+.btn {
+  border-radius: 2px !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base) !important;
+
+  &--primary {
+    background-color: var(--brand-gold) !important;
+    border-color: var(--brand-gold) !important;
+    color: var(--brand-white) !important;
+
+    &:hover {
+      background-color: var(--brand-gold-dark) !important;
+      border-color: var(--brand-gold-dark) !important;
+      box-shadow: 0 4px 16px rgba($brand-gold, 0.3);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--outline {
+    border-color: var(--brand-gold) !important;
+    color: var(--brand-gold) !important;
+
+    &:hover {
+      background-color: var(--brand-gold) !important;
+      color: var(--brand-white) !important;
+    }
+  }
+}
